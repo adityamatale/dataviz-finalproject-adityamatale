@@ -1,0 +1,5 @@
+[theme]
+primaryColor = "#2E75B6"
+font = "sans serif"
+# backgroundColor / textColor deliberately left unset —
+# this keeps Streamlit's native light/dark toggle fully functional
