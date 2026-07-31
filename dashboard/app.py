@@ -1,5 +1,5 @@
 import streamlit as st
-
+from pathlib import Path
 from utils import inject_css
 
 
@@ -23,8 +23,9 @@ inject_css()
 # --------------------------------------------------
 # Application Branding
 # --------------------------------------------------
+BASE_DIR = Path(__file__).resolve().parent
 st.logo(
-    "assets/logo.png",
+    str(BASE_DIR / "assets" / "logo.png"),
     size="large"
 )
 
