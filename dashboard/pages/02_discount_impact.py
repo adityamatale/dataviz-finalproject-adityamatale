@@ -97,7 +97,9 @@ with col_left:
         size_max=45
     )
 
-    fig1.add_hline(y=0, line_dash="dash", line_color="#888888", line_width=1.5)
+    fig1.add_hline(y=0, line_dash="dash", line_color="#888888", line_width=1.5,
+                   annotation=dict(text='Breakeven', font=dict(size=11, color='#888888'),
+                                   xanchor='left',yanchor='bottom', x=0.92))
 
     worst = agg.loc[agg["Margin"].idxmin()]
 

@@ -86,6 +86,9 @@ with col_left:
     median_sales = df_cap.groupby("Ship Mode")["Sales"].median().sort_values(ascending=False)
     top_ship_mode = median_sales.index[0]
 
+    ship_summary = (df.groupby('Ship Mode')
+                .agg(Avg_Sales=('Sales', 'mean'), Avg_Shipping_Cost=('Shipping Cost', 'mean'))
+                .reset_index())
 
     # Highlight top performing ship mode
     color_map = {
@@ -102,6 +105,15 @@ with col_left:
         color_discrete_map=color_map,
         points=False
     )
+
+    for _, row in ship_summary.iterrows():
+        fig1.add_annotation(
+            x=p95 * 0.92, y=row['Ship Mode'],
+            text=f"avg ship cost: ${row['Avg_Shipping_Cost']:.0f}",
+            showarrow=False, font=dict(size=10, color='#666666', family='Arial'),
+            xanchor='right', yshift=12,                    # added — lifts text above the whisker line
+            bgcolor='white', borderpad=2                    # added — clean background so line doesn't cross text
+        )
 
     themed_layout(
         fig1,
