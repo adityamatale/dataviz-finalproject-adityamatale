@@ -193,24 +193,27 @@ with col_right:
 # --------------------------------------------------
 st.space("small")
 
-best = agg2.loc[agg2["Margin"].idxmax()]
-worst = agg2.loc[agg2["Margin"].idxmin()]
+if agg2.empty:
+    pass
+else:
+    best = agg2.loc[agg2["Margin"].idxmax()]
+    worst = agg2.loc[agg2["Margin"].idxmin()]
 
-c1, c2 = st.columns(2)
+    c1, c2 = st.columns(2)
 
-c1.metric(
-    "Best Segment",
-    f"{best['Disc_Bin']} · {best['Qty_Bin']}",
-    f"{best['Margin']:.1f}% margin",
-    help="The most profitable combination of discount band and order quantity within the current filters. The value shows the discount range and quantity bin, while the margin below is the average profit margin for that segment."
-)
+    c1.metric(
+        "Best Segment",
+        f"{best['Disc_Bin']} · {best['Qty_Bin']}",
+        f"{best['Margin']:.1f}% margin",
+        help="The most profitable combination of discount band and order quantity within the current filters. The value shows the discount range and quantity bin, while the margin below is the average profit margin for that segment."
+    )
 
-c2.metric(
-    "Worst Segment",
-    f"{worst['Disc_Bin']} · {worst['Qty_Bin']}",
-    f"{worst['Margin']:.1f}% margin",
-    help="The least profitable combination of discount band and order quantity within the current filters. Use this to identify where heavy discounts or specific order sizes are associated with the weakest margins."
-)
+    c2.metric(
+        "Worst Segment",
+        f"{worst['Disc_Bin']} · {worst['Qty_Bin']}",
+        f"{worst['Margin']:.1f}% margin",
+        help="The least profitable combination of discount band and order quantity within the current filters. Use this to identify where heavy discounts or specific order sizes are associated with the weakest margins."
+    )
 
 
 # --------------------------------------------------

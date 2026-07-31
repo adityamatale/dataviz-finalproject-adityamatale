@@ -156,7 +156,7 @@ with col_right:
             y=worst["Profit"],
             text=f"<b>{worst['Sub-Category']}</b><br>Lowest contributor<br>${worst['Profit']:,.0f}",
             showarrow=True,
-            arrowhead=2,
+            arrowhead=1,
             ax=0,
             ay=-100,
             font=dict(size=10)
